@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ComfyUI Launcher</title>
+</head>
+<body>
+<h1>Управление сессиями ComfyUI</h1>
+ 
+    <form method="POST" action="/start">
+<input type="text" name="port" placeholder="Порт (например, 8188)" required>
+<button type="submit">Запустить</button>
+</form>
+ 
+    <form method="POST" action="/stop">
+<input type="text" name="port" placeholder="Порт (например, 8188)" required>
+<button type="submit">Остановить</button>
+</form>
+ 
+    <h2>Активные сессии:</h2>
+<ul>
+        {% for port in sessions %}
+<li>
+<a href="http://127.0.0.1:{{ port }}" target="_blank">Открыть ComfyUI на порту {{ port }}</a>
+</li>
+        {% else %}
+<li>Нет активных сессий</li>
+        {% endfor %}
+</ul>
+</body>
+</html>
